@@ -1,0 +1,216 @@
+@*
+ 	This file is part of Plantmap-Library.
+
+	Plantmap-Library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Plantmap-Library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Plantmap-Library.  If not, see <http://www.gnu.org/licenses/>.
+*@
+@(model: viewmodels.SearchVM)
+@import play.i18n._
+@import models.users._
+
+@main("Search page", NavCategory.Search) {
+	@if(flash.contains("error")) {
+	    <div class="alert alert-warning" role="alert">
+	        @flash.get("error")
+	    </div>
+	}
+
+	@if(flash.contains("success")) {
+	    <div class="alert alert-success" role="alert">
+	        @flash.get("success")
+	    </div>
+	}
+	
+	@defining(ctx.args.get("userContext").asInstanceOf[controllers.actions.UserContext]) { userCtx =>
+		<div class="row">
+			<div>
+				<div class="col-xs-3">
+					@if(userCtx.isAuthenticated()){
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">@Messages.get("views.search.actionPanel.title")</h3>
+							</div>
+							<div class="panel-body">
+					          	<button type="button" class="btn btn-default" data-bind="checkbox: selectAll"><span class="glyphicon glyphicon-flash"></span> @Messages.get("views.search.actionPanel.selectAllButton")</button>
+								<button type="button" class="btn btn-default" data-bind="click: downloadSelected"><span class="glyphicon glyphicon-save-file"></span> @Messages.get("views.search.actionPanel.downloadButton")</button>
+								@if(userCtx.hasRole(Role.Admin)){
+									<button type="button" class="btn btn-default" data-bind="click: deleteSelected"><span class="glyphicon glyphicon-fire ctx-search-button-selectall-icon"></span> @Messages.get("views.search.actionPanel.removeButton")</button>
+								}
+							</div>
+						</div>
+					}
+				
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">@Messages.get("views.search.filterPanel.title")</h3>
+						</div>
+						<div class="panel-body js-filter-search-on-enter">
+							<fieldset>
+								<div class="form-group">
+									<label>@Messages.get("views.search.filterPanel.keyword")</label>
+									<input data-bind="textInput: keywords" type="text" class="form-control" placeholder="@Messages.get("views.search.filterPanel.keyword.placeholder")" autofocus>
+								</div>
+								<div class="form-group">
+									<label>@Messages.get("views.search.filterPanel.project")</label>
+									<input data-bind="textInput: projectName" type="text" class="form-control" name="projet_name" placeholder="@Messages.get("views.search.filterPanel.project.placeholder")">
+								</div>
+								<div class="form-group">
+									<label>@Messages.get("views.search.filterPanel.contactName")</label>
+									<input type="text" data-bind="textInput: contactName" class="form-control" name="contactName" placeholder="@Messages.get("views.search.filterPanel.contactName.placeholder")">
+								</div>
+			
+			
+								<div class="form-group">
+									<label>@Messages.get("views.search.filterPanel.mapDateCreation")</label>
+									<div>
+										<p>@Messages.get("views.search.filterPanel.mapDateCreation.from") <input type="text" id="datepickerdebut"  class="form-control" name="range_observationStart" data-bind=" value : rangeGenerationDateStart, calendar: opts"></p>
+										<p>@Messages.get("views.search.filterPanel.mapDateCreation.to") <input type="text" id="datepickerfin"  class="form-control" name="range_observationEnd" data-bind="value : rangeGenerationDateEnd, calendar: optsEnd"></p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>@Messages.get("views.search.filterPanel.cbnOrganisation")</label>
+									<select id="select" class="form-control" data-bind="value: organizationCbn, event: {change: cleanThenSearch}">
+										<option></option>
+										@for(cbn <- model.getCbns()) {
+											<option>@cbn</option>
+										}
+									</select>
+								</div>
+								<div class="form-group">
+									<label>@Messages.get("views.search.filterPanel.taxon")</label>
+									<input type="text" data-bind="textInput: taxon" class="form-control"></textarea>
+								</div>
+								@if(userCtx.isAuthenticated()){
+									<div class="form-group">
+										<label>@Messages.get("views.search.filterPanel.visibility")</label>
+										<select id="select" class="form-control" data-bind="value: visibility, event: {change: cleanThenSearch}">
+											<option value="">@Messages.get("views.search.filterPanel.visibility.all")</option>
+											<option value="private">@Messages.get("views.search.filterPanel.visibility.private")</option>
+											<option value="public">@Messages.get("views.search.filterPanel.visibility.public")</option>
+										</select>
+									</div>
+								}
+								<div class="form-group">
+									<center>
+										<button data-bind="click: search" class="btn btn-primary btn-lg">
+											@Messages.get("views.search.filterPanel.searchButton") <span class="glyphicon glyphicon-search"></span>
+										</button>
+									</center>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="vue_etiquette">
+				<div class="col-xs-9">
+					<div class="sidebar-nav">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="form-horizontal js-filter-search-on-enter">
+									<div class="input-group ctx-search-bar">
+										<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+										<input data-bind="textInput: searchTerms" type="text" class="form-control input-lg" placeholder=@Messages.get("views.search.searchBar.placeholder") autofocus>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div data-bind="visible: displayTimeTaken" style="display:none">
+									<div class="alert alert-info" role="alert" >
+										<span data-bind="text: totalResultCount"></span> @Messages.get("views.search.infoBar.found") <span data-bind="text: searchTime"></span>
+									</div>
+								</div>
+								<div class="alert alert-danger" role="alert" id="js-search-ajax-error-block" style="display:none">
+									@Messages.get("views.search.infoBar.error")
+								</div>
+							</div>
+						</div>
+	
+						<div><span class="glyphicon glyphicon-leaf spinning" id="js-etiquettes-spinner"></span></div>
+						<div class="row" id="js-etiquettes-container">
+							<div id="idTemplatesEtiquettes" data-bind="template: { name: 'etiquettesTemplate', foreach: etiquettes, as: 'etiquette'}"></div>
+						</div>
+						
+						<div class="ctx-search-pagination-container" data-bind="visible: pageCount() > 0">
+							<nav class="ctx-search-pagination">
+								<ul class="pagination">
+									<li data-bind="click: previousPage, css: { disabled: pageNumber() <= 1 }">
+										<a href="#" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+		
+									<!-- ko foreach: pageLinks -->
+										<li data-bind="click: $parent.loadPage, css: { active: $parent.pageNumber() == $data }"><a href="#" aria-label="LoadPage" data-bind="text: $data"></a></li>
+									<!-- /ko -->
+		
+									<li datsua-bind="click: nextPage, css: { disabled: pageNumber() >= pageCount() }">
+										<a href="#" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+										</a>
+									</li>
+								</ul>
+							</nav>
+							
+							<div class="ctx-search-result-count-select">
+								<div class="form-group">
+									<label for="selectPageSize">@Messages.get("views.search.selectPage.text")</label>
+									<select id="selectPageSize" class="form-control" data-bind="value: pageSize">
+									     <option>8</option>
+										<option>16</option>
+										<option>32</option>
+										<option>64</option>
+										<option>128</option>
+									</select> 
+								</div>
+	                  		</div>
+						</div>
+					</div>
+				</div>
+			</div><!--vue_etiquettes-->
+		</div>
+
+		<!-- <pre data-bind="text: ko.toJSON($root, null, 2)"></pre> -->
+		<script type="text/html" id="etiquettesTemplate">
+			<div class="col-sm-6 col-md-4 col-lg-3">
+				@if(userCtx.isAuthenticated()){
+					<input type="checkbox" data-bind="checked: isSelected" />
+				}
+				<span class="glyphicon glyphicon-lock ctx-search-lock-icon" data-bind="visible: etiquette.isPrivate()"></span>
+				<a data-toggle="tooltip" data-placement="top" target="_blank" data-html="true"  
+					class="thumbnail" data-bind="attr:{href: 'permalink/' +  etiquette.id, title: etiquette.tooltipText}">
+
+					<img class="media-object" data-bind="attr:{src: config.thumbnailUrl +  etiquette.img}" alt="vignette" width="130" heigth="130">
+
+					<p  class="ctx-search-vignette"><strong data-bind="text: etiquette.projectShortName"></strong><br />
+					<span data-bind="text: etiquette.taxonShortName"></span></p>
+				</a>
+			</div>
+		</script>
+				
+		<script type="text/javascript">
+			// Initialize js for this page
+			$(document).ready(function() {
+				$("#js-search-ajax-error-block").hide();
+				$("#js-etiquettes-spinner").hide();
+				
+				initSearchPage();
+			});
+		</script>
+	}
+}
+	

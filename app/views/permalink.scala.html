@@ -1,0 +1,88 @@
+@*
+ 	This file is part of Plantmap-Library.
+
+	Plantmap-Library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Plantmap-Library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Plantmap-Library.  If not, see <http://www.gnu.org/licenses/>.
+*@
+@import play.i18n._
+@(model: viewmodels.PermalinkVM)
+@import controllers.actions._
+
+@main(model.getTitle(), NavCategory.Search) {
+	@defining(ctx.args.get("userContext").asInstanceOf[UserContext]) { userCtx =>
+		<div class="row">
+			<div class="col-md-12 ">
+				<div class="well sidebar-nav">
+					<img src=@{routes.Image.getThumbnail("big", model.getPath())} class="img-responsive" alt="Map"> <br />
+					@if(userCtx.isAuthenticated()){
+						<div><a id="js-download-button" class="btn btn-default" role="button">@Messages.get("views.permalink.downloadButton")</a></div>
+					}
+					<br />
+					<div class="panel panel-default">
+						<div class="panel-body">
+							@if(model.getIsPrivate()){
+								<div class="alert alert-warning" role="alert">
+									<span class="glyphicon glyphicon-lock"></span> @Messages.get("views.permalink.mapInfo")
+								</div>
+							}
+							<div class="table-responsive">
+								<table class="table table-striped table-condensed">
+									@for((categoryTitle, metadata) <- model.getMetadata()) {
+										<thead>
+											<tr>
+												<th><h3>@categoryTitle</h3></th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											@for((metadataName , metadataValue) <- metadata) {
+												<tr>
+													<td><strong>@metadataName</strong></td>
+													<td>@metadataValue</td>
+												</tr>
+											}
+										</tbody>
+									}
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		@if(userCtx.isAuthenticated()){
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$("#js-download-button").click(function() {
+						var data = {
+								idList: ["@{model.getId()}"]
+						};
+						console.log("post to " + config.downloadUrl);
+						$.ajax(config.downloadUrl, {
+							data: ko.toJSON(data),
+							type: "post", contentType: "application/json",
+							datatype: "json",
+							success: function(data){
+								console.log(data);
+								window.location.href = data.fileUrl; 
+							},
+							error: function(){
+								console.log("error");
+							}
+						});
+					});
+				});
+			</script>
+		}
+	}
+}

@@ -1,0 +1,62 @@
+@*
+ 	This file is part of Plantmap-Library.
+
+	Plantmap-Library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Plantmap-Library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Plantmap-Library.  If not, see <http://www.gnu.org/licenses/>.
+*@
+@import play.i18n._
+@(form: Form[controllers.Authentication.Login])
+
+@main("Login", NavCategory.Login) {
+	@helper.form(routes.Authentication.authenticate) {
+		<div class="container">
+	 		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+				@if(form.hasGlobalErrors) {
+					<div class="alert alert-warning" role="alert">
+						@form.globalError.message
+					</div>
+				}
+				@if(flash.contains("success")) {
+					<div class="alert alert-success" role="alert">
+						@flash.get("success")
+					</div>
+				}
+			</div>
+	        <div style="margin-top:40px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			    <div class="panel panel-default" >
+					<div class="panel-heading">
+	                   	<div class="panel-title">@Messages.get("views.login.loginTitle")</div>
+	                </div>
+	
+	                <div style="$margin-top:25px" class="panel-body" >
+						<form id="loginform" class="form-horizontal" role="form">
+							<div style="margin-bottom: 25px" class="input-group">
+			                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+			                    <input type="text" class="form-control" name="login" value="" placeholder="@Messages.get("views.login.login.placeholder")" value="@form("login").value" autofocus>
+			                </div>
+	
+	                        <div style="margin-bottom: 25px" class="input-group">
+		                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+		                        <input type="password" class="form-control" name="password" placeholder="@Messages.get("views.login.password.placeholder")">
+		                    </div>
+							
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary">@Messages.get("views.login.loginButton") </button>
+	                        </div>
+						</form>
+					</div>
+				</div>
+	        </div>
+		</div>
+	}
+}

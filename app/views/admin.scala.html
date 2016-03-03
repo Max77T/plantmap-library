@@ -1,0 +1,95 @@
+@*
+ 	This file is part of Plantmap-Library.
+
+	Plantmap-Library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Plantmap-Library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Plantmap-Library.  If not, see <http://www.gnu.org/licenses/>.
+*@
+@(users: List[viewmodels.AdminVM])
+@import play.i18n._
+
+@main("Administration", NavCategory.Admin) {
+		<div class="tabbable-panel">
+			<div class="tabbable-line">
+				<ul class="nav nav-tabs ">
+					<li class="active">
+						<a href="#tab_default_1" data-toggle="tab">@Messages.get("views.admin.manageTab.title") </a>
+					</li>
+					<li>
+						<a href="#tab_default_2" data-toggle="tab">@Messages.get("views.admin.createTab.title") </a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab_default_1">
+						<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>@Messages.get("views.admin.userName")</th>
+								<th>@Messages.get("views.admin.email")</th>
+								<th>@Messages.get("views.admin.role")</th>
+								<th></th>
+							</tr>
+						</thead>									
+						<tbody>
+							@for(user <- users) {
+								<tr>
+									<td>@user.getLogin()</td>
+									<td>@user.getEmail()</td>
+									<td>@user.getRole()</td>
+									<td><button type="button" class="btn btn-default btn-xs" onclick="deletebyId(@user.getId());"><span class="glyphicon glyphicon-fire ctx-search-button-selectall-icon"></span> @Messages.get("views.admin.delete")</button></td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+				<div class="tab-pane" id="tab_default_2">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>@Messages.get("views.admin.userName")</th>
+								<th>@Messages.get("views.admin.password")</th>
+								<th>@Messages.get("views.admin.email")</th>
+								<th>@Messages.get("views.admin.role")</th>
+							</tr>
+						</thead>									
+						<tbody>
+							<tr>
+								<td>
+									<input class="form-control" type="text"  name="login" id="login" placeholder="@Messages.get("views.admin.userName")">
+								</td>
+								<td>
+									<input class="form-control" type="password"  name="password" id="password" placeholder="@Messages.get("views.admin.password")">
+								</td>
+								<td>
+									<input class="form-control" type="email" name="email" id="email" placeholder="@Messages.get("views.admin.email")">
+								</td>
+								<td>
+									<select  class="form-control" id="role">
+										<option value="Admin">Admin</option>
+										<option value="Geomatician">Geomatician</option>
+										<option value="User">User</option>	
+									</select>
+								</td>
+								<td>
+									<button type="button" onclick="createUser();" class="btn btn-default" >
+										<span class="glyphicon glyphicon-ok-sign ctx-search-button-selectall-icon"></span> @Messages.get("views.admin.add")
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+

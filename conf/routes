@@ -1,0 +1,41 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+
+# Application pages
+GET     /                           @controllers.Application.index()
+GET     /about                      @controllers.Application.about()
+GET		/error						@controllers.Application.error()
+
+# Images
+GET     /thumbnails/:size/*file     @controllers.Image.getThumbnail(size: String, file: String)
+
+# Search
+GET     /search                     @controllers.Search.index()
+POST    /api/search                 @controllers.Search.search()
+
+# Authentication
+GET     /login                  	@controllers.Authentication.login()
+POST    /authenticate               @controllers.Authentication.authenticate()
+GET     /logout                     @controllers.Authentication.logout()
+
+# Upload
+GET     /upload                     @controllers.Upload.index()
+POST    /upload                     @controllers.Upload.upload()
+
+# Download
+POST	/api/download				@controllers.Download.prepareDownload()
+GET		/api/download/*file			@controllers.Download.download(file: String)
+
+# Delete
+POST	/api/delete					@controllers.Delete.delete()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Permalink
+GET		/permalink/*id				@controllers.Permalink.getId(id: String)
+
+#Admin
+GET		/admin 					    @controllers.Admin.index()
+POST	/admin/delete/*id			@controllers.Admin.delete(id : Integer)
+POST	/admin/add					@controllers.Admin.add()

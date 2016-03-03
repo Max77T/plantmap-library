@@ -1,0 +1,112 @@
+@*
+ 	This file is part of Plantmap-Library.
+
+	Plantmap-Library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Plantmap-Library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Plantmap-Library.  If not, see <http://www.gnu.org/licenses/>.
+*@
+@import play.i18n._
+@(model: viewmodels.UploadVM)
+
+@main("Upload page", NavCategory.Upload) {
+	
+	@if(flash.contains("error")) {
+	    <div class="alert alert-danger" role="alert">
+	        @flash.get("error")
+	    </div>
+	}
+	
+	@if(flash.contains("success")) {
+	    <div class="alert alert-success" role="alert">
+	        @flash.get("success")
+	    </div>
+	}
+	
+	@helper.form(routes.Upload.upload, 'enctype -> "multipart/form-data") {
+		<div class="row">
+			<div id="vue_import">
+				<div class="col-xs-4 ">
+					<div class="well sidebar-nav">
+						<legend>@Messages.get("views.upload.uploadPanel.title")</legend>
+						
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<em>
+									@Messages.get("views.upload.uploadPanel.description")<br/><strong>@Messages.get("views.upload.uploadPanel.description.major")</strong>
+								</em>
+							</div>
+						</div>
+						
+						<form>
+							<div class="form-group">
+							    <label for="exampleInputFile">@Messages.get("views.upload.uploadPanel.secondTitle")</label>
+							    <input  type="file" name="zipFile">
+							    <p class="help-block">@Messages.get("views.upload.uploadPanel.secondDescription")</p>
+						  	</div>
+							
+							<div class="checkbox">
+						    <label>
+						      <input type="checkbox" name="isPrivate" checked> @Messages.get("views.upload.uploadPanel.checkBox")
+						    </label>
+						    <p class="help-block">@Messages.get("views.upload.uploadPanel.checkBox.description")</p>
+						  </div>
+							
+							<button class="btn btn-primary" type="submit" id="js-import-button">@Messages.get("views.upload.uploadPanel.uploadButton")</button>
+						</form>
+					</div>
+				</div>
+	
+				<div class="col-xs-8">
+					<div class="ctx-upload-spinner">
+						<span class="glyphicon glyphicon-leaf spinning ctx-spinning-leaf" id="js-uploadhistory-spinner" style="display:none"></span>
+					</div>
+
+					<div id="js-uploadhistory-table" class="panel panel-default">
+						<div class="panel-heading">@Messages.get("views.upload.historyPanel.title")</div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>@Messages.get("views.upload.historyPanel.table.fileName")</th>
+									<th>@Messages.get("views.upload.historyPanel.table.userName")</th>
+									<th>@Messages.get("views.upload.historyPanel.table.date")</th>
+									<th>@Messages.get("views.upload.historyPanel.table.size")</th>
+								</tr>
+							</thead>									
+							<tbody>
+								@for(mapHistory <- model.getHistory()) {
+								<tr>
+									<td>@mapHistory.getName</td>
+									<td>@mapHistory.getLogin</td>
+									<td>@mapHistory.getDate</td>
+									<td>@{mapHistory.getSizeInMo}Mo</td>
+								</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				$("#js-uploadhistory-spinner").hide();
+				$("#js-uploadhistory-table").show();
+				
+				$("#js-import-button").click(function(){
+					$("#js-uploadhistory-table").hide();
+					$("#js-uploadhistory-spinner").show();
+				});
+			});
+		</script>
+	}
+}

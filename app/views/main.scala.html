@@ -1,0 +1,82 @@
+@*
+ 	This file is part of Plantmap-Library.
+
+	Plantmap-Library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Plantmap-Library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Plantmap-Library.  If not, see <http://www.gnu.org/licenses/>.
+*@
+@(title: String, navCategory: NavCategory = NavCategory.None)(content: Html)
+@import play.i18n._
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/lib/bootstrap.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/lib/jquery-ui.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/lib/bootstrap-theme.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/lib/ko-calendar.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/plantmap.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script src="@routes.Assets.versioned("javascripts/lib/jquery-1.11.3.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/lib/knockout-3.4.0.js")" type="text/javascript"></script>
+       
+        <script src="@routes.Assets.versioned("javascripts/lib/jquery-ui.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/lib/ko-calendar.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/lib/moment.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/lib/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/research.js")" type="text/javascript"></script>
+	    <script src="@routes.Assets.versioned("javascripts/admin.js")" type="text/javascript"></script>
+		
+		<script type="text/javascript">
+			// Provide some server side generated value to javascript
+			var config = {
+				deleteUrl: "@{routes.Delete.delete}",
+				downloadUrl: "@{routes.Download.prepareDownload}",
+				searchUrl: "@{routes.Search.search}",
+				thumbnailUrl: "@{routes.Image.getThumbnail("small", "")}",
+				deleteUserUrl: "@{routes.Admin.delete(0)}",
+				createUserUrl: "@{routes.Admin.add}"
+			};
+			
+			var translation = {
+				searchTooltipProject: "@{Messages.get("js.search.tooltip.project")}",
+				searchTooltipOrganism: "@{Messages.get("js.search.tooltip.organism")}",
+				searchTooltipDescription: "@{Messages.get("js.search.tooltip.description")}",
+				searchTooltipTaxon: "@{Messages.get("js.search.tooltip.taxon")}",
+				searchDeleteConfirmation: "@{Messages.get("js.search.delete.confirmation")}",
+				adminDeleteConfirmation: "@{Messages.get("js.admin.delete.confirmation")}"
+			};
+		</script>
+    </head>
+    <body>
+    	<div class="container">
+	    	<div class="page-header ctx-plantmap-header">
+		    	<div class="row">
+					<div class="col-xs-4">
+						<a href="http://www.fcbn.fr/" target="_blank">
+							<img src="@routes.Assets.versioned("images/fcbn-logo.jpg")" width="85" heigth="94" alt="logo-fcbn"/>
+						</a>
+					</div>
+					<div class="col-xs-8">
+						<h1>@Messages.get("views.main.title") <small>@Messages.get("views.main.smallTitle")</small></h1>
+					</div>
+				</div>
+			</div>
+
+			@navbar(navCategory)
+
+		  	@content
+		</div>
+    </body>
+</html>

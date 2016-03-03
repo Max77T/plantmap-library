@@ -1,0 +1,131 @@
+views.about.pageTitle=À propos
+views.about.descriptionTitle=Bienvenue!
+views.about.description=Ce site a été créé lors d''un projet de fin de dernière année d''école d''ingénieur à l''Esipe. Il permet de rechercher des cartes créées par la Fédération des Conservatoires Botaniques Nationaux via le plugin QGIS PlantMap développé dans le cadre du même projet. Ce plugin permet de génèrer des cartes et leur métadonnées en masse permettant ensuite de rechercher et retrouver les cartes dans la cartothèque.
+views.about.searchButton=Rechercher
+views.about.link.libraryRepository=Dépot git de la cartothèque
+views.about.link.pluginRepository=Dépot git du plugin
+views.about.link.esipe=Site de l''Esipe
+views.about.link.fcbn=Site de la FCBN
+
+views.error.title=Une erreur est survenue
+
+views.login.loginButton=Connexion
+views.login.loginTitle=Connexion
+views.login.login.placeholder=Login
+views.login.password.placeholder=Mot de passe
+
+views.main.title=PlantMap
+views.main.smallTitle=Cartothèque
+
+views.navbar.plantMapTab=PlantMap
+views.navbar.search=Rechercher
+views.navbar.import=Importer
+views.navbar.about=À propos
+views.navbar.signOutButton=Déconnexion
+views.navbar.anonymousLogin=anonyme
+views.navbar.signInButton=Connexion
+
+views.permalink.downloadButton=Télécharger
+views.permalink.mapInfo=Cette carte est privée
+
+views.search.actionPanel.title=Actions
+views.search.actionPanel.selectAllButton=Sélectionner tout
+views.search.actionPanel.downloadButton=Télécharger
+views.search.actionPanel.removeButton=Supprimer
+views.search.filterPanel.title=Filtres
+views.search.filterPanel.keyword=Mots-clés
+views.search.filterPanel.keyword.placeholder=Mots-clés...
+views.search.filterPanel.project=Projet
+views.search.filterPanel.project.placeholder=Nom du projet...
+views.search.filterPanel.contactName=Contact
+views.search.filterPanel.contactName.placeholder=Nom du contact...
+views.search.filterPanel.mapDateCreation=Date de création des cartes
+views.search.filterPanel.mapDateCreation.from=De
+views.search.filterPanel.mapDateCreation.to=À
+views.search.filterPanel.cbnOrganisation=Organisme CBN
+views.search.filterPanel.taxon=Taxon
+views.search.filterPanel.visibility=Visibilité
+views.search.filterPanel.visibility.private=Privée
+views.search.filterPanel.visibility.public=Publique
+views.search.filterPanel.visibility.all=Toutes
+views.search.filterPanel.searchButton=Rechercher
+views.search.searchBar.placeholder=Recherche...
+views.search.infoBar.found=cartes trouvées en
+views.search.infoBar.error=Une erreur est survenue.
+views.search.selectPage.text=Résulats par page
+
+views.upload.uploadPanel.title=Importer des cartes
+views.upload.uploadPanel.description=Afin d''importer des cartes générées depuis le plugin Qgis "PlantMap", veuillez sélectionner le fichier *.zip souhaité.
+views.upload.uploadPanel.description.major=Ce fichier ne doit pas excéder 300Mo.
+views.upload.uploadPanel.secondTitle=Envoi de fichier
+views.upload.uploadPanel.secondDescription=Choisissez une archive .zip contenant des cartes et leurs métadonnées.
+views.upload.uploadPanel.checkBox=Carte privée
+views.upload.uploadPanel.checkBox.description=Si cette option est cochée, les cartes importées seront uniquement visibles par des utilisateurs ayant un compte sur la cartothèque.
+views.upload.uploadPanel.uploadButton=Importer à la cartothèque
+views.upload.historyPanel.title=Historique des 10 derniers imports
+views.upload.historyPanel.table.fileName=Nom du fichier
+views.upload.historyPanel.table.userName=Utilisateur
+views.upload.historyPanel.table.date=Date
+views.upload.historyPanel.table.size=Taille
+
+views.admin.manageTab.title=Gestion des utilisateurs
+views.admin.createTab.title=Ajout d''un utilisateur
+views.admin.userName=Nom de l''utilisateur
+views.admin.email=Email
+views.admin.role=Rôle
+views.admin.delete=Supprimer
+views.admin.password=Mot de passe
+views.admin.add=Ajouter
+
+controllers.authentication.logout.success=Vous êtes déconnecté
+controllers.authentication.login.error=Nom d''utilisateur ou mot de passe invalide
+
+dtos.permalinkVM.metaData.taxonName=Nom
+dtos.permalinkVM.metaData.taxonCdref=CD REF
+dtos.permalinkVM.metaData.projectName=Nom
+dtos.permalinkVM.metaData.projectDescription=Description
+dtos.permalinkVM.metaData.projectVersion=Numéro de version
+dtos.permalinkVM.metaData.projectModificationDate=Date de dernière modification
+dtos.permalinkVM.metaData.rangeObservation=Fourchette d''observation
+dtos.permalinkVM.metaData.organizationCbn=Organisme CBN
+dtos.permalinkVM.metaData.contactName=Nom du contact
+dtos.permalinkVM.metaData.contactInspire=Contact
+dtos.permalinkVM.metaData.email=Email
+dtos.permalinkVM.metaData.projection=Projection
+dtos.permalinkVM.metaData.bBox=Emprise
+dtos.permalinkVM.metaData.pictureExtension=Extension
+dtos.permalinkVM.metaData.pictureDimension=Résolution
+dtos.permalinkVM.metaData.pictureGenerationDate=Date de génération
+dtos.permalinkVM.metaData.pictureWeight=Poids
+dtos.permalinkVM.metaData.pictureDpi=DPI
+dtos.permalinkVM.metaData.genealogyData=Généalogie de la donnée
+dtos.permalinkVM.metaData.thesaurusISO=Thésaurus ISO
+dtos.permalinkVM.metaData.thesaurusINSPIRE=Thésaurus INSPIRE
+dtos.permalinkVM.metaData.thesaurusCBN=Thésaurus CBN
+dtos.permalinkVM.metaData.keywords=Mots-clés
+dtos.permalinkVM.metaData.dataState=Etat de la donnée
+dtos.permalinkVM.metaData.updateFrequency=Fréquence de mise à jour
+dtos.permalinkVM.metaData.usageLimit=Limite d''utilisation
+dtos.permalinkVM.metaData.cbnManager=Responsable CBN
+dtos.permalinkVM.metaData.dataOwner=Propriétaire de la donnée
+dtos.permalinkVM.metaData.contact=Contact
+dtos.permalinkVM.metaData.title.taxon=Taxon
+dtos.permalinkVM.metaData.title.project=Projet
+dtos.permalinkVM.metaData.title.creator=Créateur
+dtos.permalinkVM.metaData.title.geographicalArea=Zone géographique
+dtos.permalinkVM.metaData.title.inspireField=INSPIRE
+dtos.permalinkVM.metaData.title.picture=Image
+
+controllers.upload.error.missingFile=Aucun fichier
+controllers.upload.error.zipFile=Le fichier doit être un zip
+controllers.upload.success.uploadFile=Import réussi de {0} cartes depuis {1}
+controllers.upload.error.alreadyExists=Le fichier {0} a déjà été importé
+
+controllers.error.illegalAccess=Vous n''avez pas les droits pour accéder à cette page
+
+js.search.tooltip.project=Projet
+js.search.tooltip.organism=Organisme
+js.search.tooltip.description=Description
+js.search.tooltip.taxon=Taxon
+js.search.delete.confirmation=Etes vous sûr de vouloir supprimer ces cartes?
+js.admin.delete.confirmation=Etes vous sûr de vouloir supprimer cet utilisateur?

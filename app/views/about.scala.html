@@ -1,0 +1,34 @@
+@*
+ 	This file is part of Plantmap-Library.
+
+	Plantmap-Library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Plantmap-Library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Plantmap-Library.  If not, see <http://www.gnu.org/licenses/>.
+*@
+@()
+@import play.i18n._
+
+@main("À propos", NavCategory.About) {
+	<div class="jumbotron">
+	  <h1>@Messages.get("views.about.descriptionTitle")</h1>
+	  <p>@Messages.get("views.about.description")</p>
+	  
+	  <ul class="list-group">
+	  	<li class="list-group-item"><a href="https://github.com/Max77T/plantmap-library">@Messages.get("views.about.link.libraryRepository")</a></li>
+	  	<li class="list-group-item"><a href="https://github.com/Max77T/plantmap-plugin">@Messages.get("views.about.link.pluginRepository")</a></li>
+	  	<li class="list-group-item"><a href="http://esipe.u-pem.fr/">@Messages.get("views.about.link.esipe")</a></li>
+	  	<li class="list-group-item"><a href="http://www.fcbn.fr/">@Messages.get("views.about.link.fcbn")</a></li>
+	  </ul>
+	  
+	  <p><a class="btn btn-primary btn-lg" href="@routes.Search.index()" role="button">@Messages.get("views.about.searchButton")&nbsp;<span class="glyphicon glyphicon-search"></span></a></p>
+	</div>
+}

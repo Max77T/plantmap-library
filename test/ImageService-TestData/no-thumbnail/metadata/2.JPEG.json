@@ -1,0 +1,35 @@
+{
+	"date": "2015-12-27",
+	"dpi": "300",
+	"extension": "jpeg",
+	"dimension": "200x200",
+	"weight": "500",
+	"cbnTerritory": [
+		"CBN de Brest"
+	],
+	"region": [],
+	"hold" :["-45.0", "10.0","45.0","-45.0"],
+	"projection" : "lambert42",
+	"taxon":  {
+		"cdref": "28",
+		"name": "orties"
+	},
+	"organizationCbn": "CBN Méditerranéen de Porquerolles",
+	"email": "robert@cbn_nord",
+	"projectDescription": "Ce projet regroupe toutes les cartes du nord de la France pour les plants 28 a 45",
+	"projectName": "test plant 15",
+	"rangeObservationStart": "1950-01-01",
+	"rangeObservationEnd":"2015-01-01",
+	"projectModificationDate": "2015-12-27",
+	"projectCreationDate": "2015-12-20",
+	"versionNumber": "1",
+	"genealogyData": "1950",
+	"thesaurusISO": "iso 1",
+	"thesaurusINSPIRE": "FOEPRTG",
+	"thesaurusCBN": "OEAGPTK01",
+	"keyWord": [
+		"Plant42",
+		"rose",
+		"epine"
+	]
+}

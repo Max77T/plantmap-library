@@ -1,0 +1,162 @@
+curl -XPOST http://localhost:9200/maps/map -d '{
+"url":"coucou/firstmap.jpeg",
+"date": "2015-12-27",
+"dpi": "300",
+"extension": "jpeg",
+"dimension": "200x200",
+"weight": "500",
+"cbnTerritory": [
+"cbn_North",
+"cbn_West"
+],
+"region": [
+"North",
+"West",
+"NorthWest"
+],
+"hold" :["-45.0", "10.0","45.0","-45.0"],
+"projection" : "lambert42",
+"taxon":  {
+"cdref": "42",
+"name": "plant42"
+},
+"organizationCbn": "cbn_nord",
+"email": "robert@cbn_nord",
+"projectDescription": "Ce projet regroupe toutes les cartes du nord de la France pour les plants 1 a 15",
+"projectName": "test plant 15",
+"rangeObservationStart": "1950-01-01",
+"rangeObservationEnd":"2015-01-01",
+"projectModificationDate": "2015-12-27",
+"projectCreationDate": "2015-12-20",
+"versionNumber": "1",
+"genealogyData": "1950",
+"thesaurusISO": "iso 1",
+"thesaurusINSPIRE": "FOEPRTG",
+"thesaurusCBN": "OEAGPTK01",
+"keyWord": [
+"Plant42",
+"rose",
+"epine"
+]
+}'
+
+curl -XPOST http://localhost:9200/maps/map -d '{
+"url":"coucou/twomap.png",
+"date": "2015-12-28",
+"dpi": "900",
+"extension": "png",
+"dimension": "400x200",
+"weight": "900",
+"cbnTerritory": [
+"cbn_North"
+],
+"region": [
+"North"
+],
+"hold" :["-45.0", "10.0","45.0","-45.0"],
+"projection" : "lambert42",
+"taxon":  {
+"cdref": "44",
+"name": "plant44"
+},
+"organizationCbn": "cbn_nord",
+"email": "robert@cbn_nord",
+"projectDescription": "Ce projet regroupe toutes les cartes du nord de la France pour les plants 44",
+"projectName": "test plant 44",
+"rangeObservationStart": "1958-01-01",
+"rangeObservationEnd":"2016-01-01",
+"projectModificationDate": "2015-12-27",
+"projectCreationDate": "2015-12-20",
+"versionNumber": "1",
+"genealogyData": "1950",
+"thesaurusISO": "iso 1",
+"thesaurusINSPIRE": "FOEPRTG",
+"thesaurusCBN": "OEAGPTK01",
+"keyWord": [
+"Plant42",
+"rose",
+"kiwi"
+]
+}'
+
+curl -XPOST http://localhost:9200/maps/map -d '{
+"url":"coucou/twomap.jpeg",
+"date": "2015-12-28",
+"dpi": "900",
+"extension": "png",
+"dimension": "400x200",
+"weight": "900",
+"cbnTerritory": [
+"cbn_North"
+],
+"region": [
+"North"
+],
+"hold" :["-45.0", "10.0","45.0","-45.0"],
+"projection" : "lambert42",
+"taxon":  {
+"cdref": "44",
+"name": "plant44"
+},
+"organizationCbn": "cbn_nord",
+"email": "robert@cbn_nord",
+"projectDescription": "Ce projet regroupe 25",
+"projectName": "test plant 44",
+"rangeObservationStart": "1958-01-01",
+"rangeObservationEnd":"2016-01-01",
+"projectModificationDate": "2015-12-27",
+"projectCreationDate": "2015-12-20",
+"versionNumber": "1",
+"genealogyData": "1950",
+"thesaurusISO": "iso 1",
+"thesaurusINSPIRE": "FOEPRTG",
+"thesaurusCBN": "OEAGPTK01",
+"keyWord": [
+"Plant42",
+"rose",
+"kiwi"
+]
+}'
+
+
+curl -XPOST http://localhost:9200/maps/map -d '{
+"url":"coucou25/54map.jpeg",
+"date": "2015-12-28",
+"dpi": "900",
+"extension": "png",
+"dimension": "400x200",
+"weight": "900",
+"cbnTerritory": [
+"cbn_North"
+],
+"region": [
+"North"
+],
+"hold" :["-45.0", "10.0","45.0","-45.0"],
+"projection" : "lambert42",
+"taxon":  {
+"cdref": "49",
+"name": "plant49"
+},
+"organizationCbn": "cbn_nord",
+"email": "robert@cbn_nord",
+"projectDescription": "Ce projet regroupe toutes les cartes du nord de la France pour les plants 44",
+"projectName": "test plant 44",
+"rangeObservationStart": "1958-01-01",
+"rangeObservationEnd":"2016-01-01",
+"projectModificationDate": "2015-12-27",
+"projectCreationDate": "2015-12-20",
+"versionNumber": "1",
+"genealogyData": "1950",
+"thesaurusISO": "iso 1",
+"thesaurusINSPIRE": "FOEPRTG",
+"thesaurusCBN": "OEAGPTK01",
+"keyWord": [
+"Plant42",
+"rose",
+"kiwi",
+"pomme"
+]
+}'
+
+

@@ -1,0 +1,30 @@
+@*
+ 	This file is part of Plantmap-Library.
+
+	Plantmap-Library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Plantmap-Library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Plantmap-Library.  If not, see <http://www.gnu.org/licenses/>.
+*@
+@(message: String = "")
+@import play.i18n._
+
+@main("Erreur", NavCategory.None) {
+	<div class="alert alert-danger" role="alert">
+		<h1><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> @Messages.get("views.error.title")</h1>
+		@if(flash.contains("error")) {
+			<h3>@flash.get("error")</h3>
+		}
+		@if(!message.isEmpty()) {
+			<h3>@message</h3>
+		}
+	</div>
+}

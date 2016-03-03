@@ -1,0 +1,131 @@
+views.about.pageTitle=About
+views.about.descriptionTitle=Welcome!
+views.about.description=This site allows you to search for maps ...
+views.about.searchButton=Search
+views.about.link.libraryRepository=Library git repository
+views.about.link.pluginRepository=Plugin git repository
+views.about.link.esipe=Esipe website
+views.about.link.fcbn=FCBN website
+
+views.error.title=An error occurred
+
+views.login.loginButton=Log in
+views.login.loginTitle=Log in
+views.login.login.placeholder=User name
+views.login.password.placeholder=Password
+
+views.main.title=PlantMap
+views.main.smallTitle=Library
+
+views.navbar.plantMapTab=PlantMap
+views.navbar.search=Search
+views.navbar.import=Import
+views.navbar.about=About
+views.navbar.signOutButton=Log out
+views.navbar.anonymousLogin=anonymous
+views.navbar.signInButton=Log in
+
+views.permalink.downloadButton=Download
+views.permalink.mapInfo=This card is private
+
+views.search.actionPanel.title=Action
+views.search.actionPanel.selectAllButton=Select all
+views.search.actionPanel.downloadButton=Download
+views.search.actionPanel.removeButton=Remove
+views.search.filterPanel.title=Filters
+views.search.filterPanel.keyword=Keywords
+views.search.filterPanel.keyword.placeholder=Keywords...
+views.search.filterPanel.project=Project
+views.search.filterPanel.project.placeholder=Project name...
+views.search.filterPanel.contactName=Contact
+views.search.filterPanel.contactName.placeholder=Contact name...
+views.search.filterPanel.mapDateCreation=Generation date
+views.search.filterPanel.mapDateCreation.from=From
+views.search.filterPanel.mapDateCreation.to=To
+views.search.filterPanel.cbnOrganisation=CBN Organization
+views.search.filterPanel.taxon=Taxon
+views.search.filterPanel.visibility=Visibility
+views.search.filterPanel.visibility.private=Private
+views.search.filterPanel.visibility.public=Public
+views.search.filterPanel.visibility.all=All
+views.search.filterPanel.searchButton=Search
+views.search.searchBar.placeholder=Search...
+views.search.infoBar.found=maps found in
+views.search.infoBar.error=An error occurred.
+views.search.selectPage.text=Results by page
+
+views.upload.uploadPanel.title=Import maps
+views.upload.uploadPanel.description=To import generated maps from the "PlantMap" Qgis plugin, please select the .zip file you want.
+views.upload.uploadPanel.description.major=This file should not exceed 300MB.
+views.upload.uploadPanel.secondTitle=File Upload
+views.upload.uploadPanel.secondDescription=Choose a zip archive which contains maps and metadata.
+views.upload.uploadPanel.checkBox=Private map
+views.upload.uploadPanel.checkBox.description=If this option is checked, imported maps will only be visible by people having an account on the PlantMap Library.
+views.upload.uploadPanel.uploadButton=Import into library
+views.upload.historyPanel.title=Last 10 imports
+views.upload.historyPanel.table.fileName=File name
+views.upload.historyPanel.table.userName=User
+views.upload.historyPanel.table.date=Date
+views.upload.historyPanel.table.size=Size
+
+views.admin.manageTab.title=User management
+views.admin.createTab.title=User add
+views.admin.userName=User name
+views.admin.email=Email
+views.admin.role=Role
+views.admin.delete=Delete
+views.admin.password=Password
+views.admin.add=Add
+
+controllers.authentication.logout.success=You are now offline
+controllers.authentication.login.error=Invalid username or password
+
+dtos.permalinkVM.metaData.taxonName=Name
+dtos.permalinkVM.metaData.taxonCdref=CD REF
+dtos.permalinkVM.metaData.projectName=Name
+dtos.permalinkVM.metaData.projectDescription=Description
+dtos.permalinkVM.metaData.projectVersion=Version number
+dtos.permalinkVM.metaData.projectModificationDate=Last modification date
+dtos.permalinkVM.metaData.rangeObservation=Range observation
+dtos.permalinkVM.metaData.organizationCbn=CBN Organization
+dtos.permalinkVM.metaData.contactName=Contact name
+dtos.permalinkVM.metaData.contactInspire=Contact
+dtos.permalinkVM.metaData.email=Email
+dtos.permalinkVM.metaData.projection=Projection
+dtos.permalinkVM.metaData.bBox=Bbox
+dtos.permalinkVM.metaData.pictureExtension=Extension
+dtos.permalinkVM.metaData.pictureDimension=Resolution
+dtos.permalinkVM.metaData.pictureGenerationDate=Generation date
+dtos.permalinkVM.metaData.pictureWeight=Weight
+dtos.permalinkVM.metaData.pictureDpi=DPI
+dtos.permalinkVM.metaData.genealogyData=Genealogy data
+dtos.permalinkVM.metaData.thesaurusISO=Thesaurus ISO
+dtos.permalinkVM.metaData.thesaurusINSPIRE=Thesaurus INSPIRE
+dtos.permalinkVM.metaData.thesaurusCBN=Thesaurus CBN
+dtos.permalinkVM.metaData.keywords=Keywords
+dtos.permalinkVM.metaData.dataState=Data state
+dtos.permalinkVM.metaData.usageLimit=Use limit
+dtos.permalinkVM.metaData.updateFrequency=Update frequency
+dtos.permalinkVM.metaData.cbnManager=CBN Manager
+dtos.permalinkVM.metaData.dataOwner=Data owner
+dtos.permalinkVM.metaData.contact=Contact
+dtos.permalinkVM.metaData.title.taxon=Taxon
+dtos.permalinkVM.metaData.title.project=Project
+dtos.permalinkVM.metaData.title.creator=Creator
+dtos.permalinkVM.metaData.title.geographicalArea=Geographical area
+dtos.permalinkVM.metaData.title.inspireField=INSPIRE
+dtos.permalinkVM.metaData.title.picture=Picture
+
+controllers.upload.error.missingFile=Missing file
+controllers.upload.error.zipFile=Should be a zip file
+controllers.upload.success.uploadFile=Upload successful of {0} maps in {1}
+controllers.upload.error.alreadyExists=The file {0} has already been imported
+
+controllers.error.illegalAccess=You don''t have rights to access this page
+
+js.search.tooltip.project=Project
+js.search.tooltip.organism=Organism
+js.search.tooltip.description=Description
+js.search.tooltip.taxon=Taxon
+js.search.delete.confirmation=Do you really want to delete these maps?
+js.admin.delete.confirmation=Do you really want to delete this user?

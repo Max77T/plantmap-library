@@ -1,0 +1,68 @@
+#!/bin/sh -e
+
+##----------------------------------
+## Script  : Plantmap-library Deamon
+## Auteur  : GreenMapper Team
+## Date    : 26-02-2016
+## Version : 1.0.1
+## Objet   : Permet d'utiliser plantmap-library en tant que service linux
+##
+#----------------------------------
+## Syntaxes :
+## --------
+##
+## /etc/init.d/$daemon_NAME {start|stop|force-stop|restart|reload|force-reload|status}
+##
+##----------------------------------
+
+DAEMON="/usr/share/plantmap-library/bin/plantmap-library"
+PID_FILE="/var/run/plantmap-library/plantmap-library.pid"
+DAEMON_USER="plantmap-library"
+daemon_OPT="-Dhttp.port=9000 -Dpidfile.path=$PID_FILE"
+daemon_NAME="plantmap-library"
+
+# -----------------------------------
+
+PATH="/sbin:/bin:/usr/sbin:/usr/bin"
+
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+d_start () {
+    log_daemon_msg "Starting system $daemon_NAME Daemon"
+    start-stop-daemon --background --exec $daemon_NAME --start --chuid $DAEMON_USER --exec $DAEMON -- $daemon_OPT
+    sleep 10
+    status_of_proc -p $PID_FILE "$daemon_NAME" "system $daemon_NAME" && exit 0 || exit $?
+    log_end_msg $?
+}
+
+d_stop () {
+    log_daemon_msg "Stopping system $daemon_NAME Daemon"
+    start-stop-daemon --pidfile $PID_FILE --stop --quiet --retry=TERM/10/KILL/5
+    log_end_msg $?
+}
+
+case "$1" in
+    start|stop)
+        d_${1}
+    ;;
+    restart|reload|force-reload)
+        d_stop
+        d_start
+    ;;
+    force-stop)
+        d_stop || true
+        killall -q $PID_FILE || true
+        sleep 2
+        killall -q -9 $PID_FILE || true
+    ;;
+    status)
+        status_of_proc -p $PID_FILE "$daemon_NAME" "system $daemon_NAME" && exit 0 || exit $?
+    ;;
+    *)
+        echo "Usage: /etc/init.d/$daemon_NAME {start|stop|force-stop|restart|reload|force-reload|status}"
+        exit 1
+    ;;
+esac
+exit 0
