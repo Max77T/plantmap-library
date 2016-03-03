@@ -13,3 +13,14 @@ server.pid
 *.eml
 /dist/
 .cache
+
+.classpath/
+.classpath
+.project
+log
+project/project
+project/target
+target
+tmp
+dist
+.settings
